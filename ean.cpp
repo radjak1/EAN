@@ -172,19 +172,24 @@ void Kod_ean::wypisz()
 {   
     int dlugosc = 0;
     
-    if( r_dobry == true && k_dobry == true && rodzaj == 1 )
+    if( k_dobry == true && rodzaj == 1 )
     {
         cout << "Poprawny kod: ";
         dlugosc = 8;
     }
-    else if( r_dobry == true && k_dobry == true && rodzaj == 2 )
+    else if( k_dobry == true && rodzaj == 2 )
     {
         cout << "Poprawny kod: ";        
         dlugosc = 13;
     }
+    else if( k_sprawdzony == true )
+    {
+        cout << "Niepoprawny kod: ";
+        dlugosc = kod.size();
+    }
     else
     {
-        cout << "Niepoprawny / niesprawdzony kod: ";
+        cout << "Niesprawdzony kod: ";
         dlugosc = kod.size();
     }
     
