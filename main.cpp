@@ -19,9 +19,12 @@ int main()
     //k.sprawdz_rodzaj();
     //k.sprawdz_kod();
     //k.wypisz();
-    
+    //k.sprawdz_kod();
+    k.wypisz();
+    k.sprawdz_str();
     k.sprawdzony_kod( kod_dzialajacy );
     cout << kod_dzialajacy << endl;
+    k.wypisz();
     
     k.~Kod_ean();
     

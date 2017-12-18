@@ -9,8 +9,10 @@ Kod_ean::Kod_ean( string str, int r )
     kod = str;
     r_dobry = false;
     k_dobry = false;
+    s_dobry = false;
     r_sprawdzony = false;
     k_sprawdzony = false;
+    s_sprawdzony = false;
 }
 
 void Kod_ean::sprawdz_rodzaj()
@@ -54,6 +56,9 @@ void Kod_ean::sprawdz_kod()
     if( r_sprawdzony == false )
     sprawdz_rodzaj();
 
+    if( s_sprawdzony == false )
+    sprawdz_str();
+        
     k_sprawdzony = true;
 
     try
@@ -63,6 +68,9 @@ void Kod_ean::sprawdz_kod()
             string wyjatek = "Kod jest za kótki";
             throw wyjatek;
         }
+        
+        if( s_dobry == false )
+        return;
     
         for( int i = 0; i < 12; ++i )
         {
@@ -147,6 +155,30 @@ void Kod_ean::sprawdz_kod()
     {
         cout << wyjatek << endl;        
     }                       
+}
+
+void Kod_ean::sprawdz_str()
+{
+    s_sprawdzony = true;
+
+    try
+    {
+        for( int i = 0; i < kod.size(); ++i )
+        {
+            if( kod[ i ] < '0' || kod[ i ] > '9' )
+            {
+                string wyjatek = "Kod zawiera nieprawidłowe znaki";
+                throw wyjatek;
+            }
+        }
+        s_dobry = true;
+        string wyjatek = "Kod zawiera tylko cyfry";
+        throw wyjatek;
+    }
+    catch( string wyjatek )
+    {
+        cout << wyjatek << endl;
+    }
 }
 
 void Kod_ean::sprawdzony_kod( string &str )
